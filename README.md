@@ -1,4 +1,4 @@
-# ShopUI
+# Shop-cart
 
 # Please follow below steps to run project and make sure nodeJs installed in local machine if not please download and install nodeJs 
 
