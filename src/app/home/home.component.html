@@ -1,0 +1,63 @@
+<div class="item-div">
+    <div *ngIf="!cart.length" class="well">
+        Cart is Empty ! Please Add some Item.
+    </div>
+    <table *ngIf="cart && cart.length" class="table table-border">
+        <thead>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cart">
+                <td>{{item.name}}</td>
+                <td>{{item.price | currency:'USD':true}}</td>
+                <td>
+                    <div class="input-group input-group-xs qty-div">
+                        <span class="input-group-btn">
+                            <button class="btn btn-light" (click)="decreaseQuantity(item)">
+                                <i class="glyphicon glyphicon-minus"></i>
+                            </button>
+                        </span>
+                        <input type="text" value="{{item.qty}}" class="form-control qty" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-light" (click)="increaseQuantity(item)">
+                                <i class="glyphicon glyphicon-plus"></i>
+                            </button>
+                        </span>
+                    </div>
+                </td>
+                <td>{{item.qty*item.price | currency:'USD':true}}
+                    <a class="action-item" href="javascript:void(0)" (click)="deleteItem(item)">
+                        <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                    </a>
+                </td>
+
+            </tr>
+
+
+            <tr>
+                <td colspan="2"> </td>
+                <td colspan="2">
+                    <h3> Total Amount {{netAmount|currency:'USD':true}}</h3>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="product">
+
+    <div *ngFor="let prod of product;" class="text-center prod-div">
+        <img src="{{prod.productImage}}" class="rounded prod-image" alt="...">
+        <div class="prod-price">
+            <div>{{prod.productName}}</div>
+            <div class="price">{{prod.productPrice | currency:'USD':true}}</div>
+            <button (click)="addToCart(prod)" class="btn btn-primary">Add to Cart</button>
+        </div>
+    </div>
+
+</div>
